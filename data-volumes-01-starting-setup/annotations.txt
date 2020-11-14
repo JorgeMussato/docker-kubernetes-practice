@@ -32,3 +32,7 @@ Para passar variáveis de ambiente, especifica-se um valor padrão dentro do Doc
 
 ex: docker run --env ou -e PORT=8000 ...
 ex: docker run --env-file ./.env ... // pega o valor dentro de .env
+
+Para passar argumentos no build da imagem (ARG no Dockerfile), usa-se o comando
+
+ex: docker build --build-arg DEFAULT_PORT=8000 ...
