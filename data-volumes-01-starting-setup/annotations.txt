@@ -1,0 +1,28 @@
+Anonymous volumes:
+Quando se define volumes anônimos com a tag VOLUME dentro da imagem, quando o container é removido (no caso da tag --rm), esse volume é apagado, não conseguindo manter a persistência. Caso o container não tenha subido com a tag --rm, o volume não será removido, mas quando subir um novo container, ele criará um novo volume anônimo. Removível pelo Docker CLI ou quando o container sobe com --rm.
+
+ex: docker run -v /app/data ...
+
+Named volumes:
+Para que se persista o volume, deve-se retirar o VOLUME de dentro da imagem e usar a tag -v feedback:app/feedback para criar um "named volume", que fica salvo e é listado corretamente até quando o container é removido usando o comando docker volume ls. Removível pelo Docker CLI
+
+ex: docker run -v name:/app/data ...
+
+Bind Mounts:
+São manuseados por nós (devs), nós definimos qual o caminho em que o docker deverá usar de dentro da nossa máquina. No caso de se definir um caminho absoluto como "nome do volume", ele criaria um vínculo das pastas do container e da máquina. Docker deve ter acesso a pasta. Removível apenas pelo host.
+
+ex: docker run -v absolute-path:/app/data ...
+
+docker run -d -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v "D:\Programacao\devops\Docker\data-volumes-01-starting-setup:/app" feedback-node:volumes
+
+O caminho completo é substituível por -v "%cd%":/app
+
+Quando executa o comando da linha 10, o conteúdo do container é sobrescrito pelo que tem na pasta local, fazendo com que não se encontre as dependências, para corrigir isso, fazemos:
+
+docker run -d -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v D:\Programacao\devops\Docker\data-volumes-01-starting-setup:/app" -v /app/node_modules feedback-node:volumes
+
+Nesse último comando, caso troque alguma coise no HTML ele já atualiza na hora. Mas quando troca algo no node, tem que dar stop e start no container para pegar as alterações. E com o --rm o container vai ser deletado, portanto não seria possível atualizar dessa forma. Para pegar as alterações no node, usamos uma nova dependência nodemon. Quando se faz isso, as alterações são detectadas pelo container do docker e atualizadas automaticamente mesmo que seja mudado arquivos .js.
+
+PS: Para windows, nesse caso só é possível ativar essa detecção quando se coloca os arquivos no linux file system (para quem usa WSL2)
+
+Para um guia sobre bind mounts: https://headsigned.com/posts/mounting-docker-volumes-with-docker-toolbox-for-windows/
