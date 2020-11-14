@@ -26,3 +26,9 @@ Nesse último comando, caso troque alguma coise no HTML ele já atualiza na hora
 PS: Para windows, nesse caso só é possível ativar essa detecção quando se coloca os arquivos no linux file system (para quem usa WSL2)
 
 Para um guia sobre bind mounts: https://headsigned.com/posts/mounting-docker-volumes-with-docker-toolbox-for-windows/
+
+
+Para passar variáveis de ambiente, especifica-se um valor padrão dentro do Dockerfile e no comando de run pode-se passar o parâmetro 
+
+ex: docker run --env ou -e PORT=8000 ...
+ex: docker run --env-file ./.env ... // pega o valor dentro de .env
