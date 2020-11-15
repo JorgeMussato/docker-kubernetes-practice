@@ -1,0 +1,1 @@
+É possível enviar requisições HTTP de dentro de containers "out of the box", sem configurações especiais
