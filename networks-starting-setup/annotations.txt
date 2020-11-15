@@ -1,1 +1,18 @@
-É possível enviar requisições HTTP de dentro de containers "out of the box", sem configurações especiais
+Requisições com a web (WWW):
+É possível enviar requisições HTTP de dentro de containers "out of the box", sem configurações especiais.
+
+Requisições container -> host:
+Para acessar `localhost` por dentro do container, utiliza-se `host.docker.internal`.
+ex Conexão PostgreSQL: 'postgresql://host.docker.internal:5432/db_name'
+
+Requisições container -> container
+Para pegar o IP do container, você pode dar um `docker container inspect nome_container` e na aba de NetworkSettings tem o IPAddress. Utilizando este IPAdress você pode se comunicar com o container, trocando o IP do mongoDB pelo ip do container. Mas essa maneira não é muito prática.
+
+A maneira prática é criar uma network e com o comando incluir todos em uma mesma network com o comando:
+docker run --network my_network ...
+
+Para isso tem que criar a network, ela não cria automaticamente como os volumes, portanto:
+docker network create network_name
+
+Para se comunicar entre containeres é preciso de uma network. Essa network configura de maneira mais fácil para acessar os containers pelo nome. Quando se sobe os dois containeres na mesma rede, pode-se usar a url do banco de dados por exemplo como:
+ex Conexão PostgreSQL: 'postgresql://postgres_container_name:5432/db_name'
