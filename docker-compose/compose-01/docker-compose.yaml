@@ -5,17 +5,43 @@ services:
     image: 'mongo'
     volumes:
       - data:/data/db
-    environment: 
-      MONGO_INITDB_ROOT_USERNAME: jorge
-      MONGO_INITDB_ROOT_PASSWORD: secret
-      # - MONGO_INITDB_ROOT_USERNAME = jorge
-    # env_file:
-    #   - ./env/mongo.env # para usar arquivos
+    env_file:
+      - ./env/mongo.env # para usar arquivos
+    # environment: 
+    #   MONGO_INITDB_ROOT_USERNAME: jorge
+    #   MONGO_INITDB_ROOT_PASSWORD: secret
+    #   - MONGO_INITDB_ROOT_USERNAME = jorge
 
-  # backend:
+  backend:
+    build: ./backend
+    # build:
+    #   context: ./backend # caso precise mudar o contexto do `.` dentro do Dockerfile.
+    #   dockerfile: Dockerfile # caso mudou o nome do Dockerfile.
+    #   args
+    #     some-arg: some-value
+    ports:
+      - '80:80'
+    volumes:
+      - logs:/app/logs
+      - ./backend:/app # bind mount
+      - /app/node_modules # anonymous volume
+    env_file:
+      - ./env/backend.env
+    depends_on: 
+      - mongodb
 
-  # frontend:
+  frontend:
+    build: ./frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend/src:/app/src
+    stdin_open: true # -i
+    tty: true # -t
+    depends_on: 
+      - backend
 
 volumes:
-  data: # named volume.. Anonymous volumes and bind monts don't need to specify here.
+  data: # named volume.. Anonymous volumes e bind mounts não precisa especificar aqui.
+  logs:
 
