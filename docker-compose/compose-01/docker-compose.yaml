@@ -11,6 +11,7 @@ services:
     #   MONGO_INITDB_ROOT_USERNAME: jorge
     #   MONGO_INITDB_ROOT_PASSWORD: secret
     #   - MONGO_INITDB_ROOT_USERNAME = jorge
+    # container_name: mongodb # força o nome do container a ser esse nome
 
   backend:
     build: ./backend
