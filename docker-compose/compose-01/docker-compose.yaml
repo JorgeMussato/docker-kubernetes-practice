@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: 'mongo'
+    volumes:
+      - data:/data/db
+    environment: 
+      MONGO_INITDB_ROOT_USERNAME: jorge
+      MONGO_INITDB_ROOT_PASSWORD: secret
+      # - MONGO_INITDB_ROOT_USERNAME = jorge
+    # env_file:
+    #   - ./env/mongo.env # para usar arquivos
+
+  # backend:
+
+  # frontend:
+
+volumes:
+  data: # named volume.. Anonymous volumes and bind monts don't need to specify here.
+

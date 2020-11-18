@@ -1,0 +1,3 @@
+Docker compose dropa os containeres por padrão com --rm.
+
+Docker compose cria uma network para todos os serviços e coloca os serviços nessa mesma network.
