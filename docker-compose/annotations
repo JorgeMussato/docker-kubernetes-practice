@@ -1,3 +1,9 @@
 Docker compose dropa os containeres por padrão com --rm.
 
 Docker compose cria uma network para todos os serviços e coloca os serviços nessa mesma network.
+
+`docker-compose down` não remove os volumes, apenas se colocar o `-v` no final.
+
+Para forçar o rebuild quando sobe o docker-compose, deve-se colocar o `--build`
+
+Para apenas buildar as imagens sem startar o container, utiliza-se `docker-compose build`
