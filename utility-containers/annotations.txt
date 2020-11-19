@@ -1,0 +1,25 @@
+Utilizado para executar comandos dentro de um container.
+Exemplo:
+
+docker build -t node-util . 
+
+--------------IMAGE-----------
+FROM node:14-alpine
+
+WORKDIR /app
+------------------------------
+
+
+monta-se um projeto de node usando o comando 
+docker run -it -v D:/Programacao/devops/Docker/utility-containers:/app node-util npm init
+
+Para definir apenas um tipo de comando possível é apenas colocar um ENTRYPOINT, onde só é possível usar comandos dele. Corta-se o comando npm
+docker run -it -v D:/Programacao/devops/Docker/utility-containers:/app node-util-entry init
+
+
+Com o docker-compose, devemos usar 
+docker-compose run npm init
+
+Onde npm é o nome do serviço
+
+docker-compose run não existe up e down. O run deve-se colocar o `--rm` para remover quando o container é usado.
