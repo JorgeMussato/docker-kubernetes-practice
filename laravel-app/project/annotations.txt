@@ -1,0 +1,13 @@
+Para criar a aplicação Laravel, utiliza-se o comando
+
+docker-compose run --rm composer create-project --prefer-dist laravel/laravel .
+
+Para não subir o composer no docker-compose up, usamos
+
+docker-compose up server php mysql
+
+No caso de adicionar dependencia, pode-se chamar apenas um deles.
+
+Comandos de "Dockerfile" é melhor que seja feito em dockerfile, mesmo que seja possível incluir no compose. Comandos como "workdir" e "entrypoint"
+
+Sobre os bind monts: são ótimos para desenvolvimento, mas não são muito uma opção para fazer o deploy do container.
