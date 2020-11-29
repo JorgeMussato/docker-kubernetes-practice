@@ -1,0 +1,7 @@
+No AWS ECS, ao invés de usarmos o nome do container, na URL do banco, se estamos na mesma task, devemos utilizar `localhost` ao invés de `mongodb`
+
+Multi-stage builds são Dockerfiles que fazem uma etapa para build do projeto e depois troca a imagem, utilizando o 'FROM', para cada 'FROM', é criado um novo estágio.
+
+Em multi-stage build pode-se executar apenas uma "etapa" com a flag `--target <nome do stage>`, por exemplo, no caso do React App.
+
+docker build --target build -f Dockerfile.prod .
