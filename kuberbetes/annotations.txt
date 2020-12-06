@@ -38,6 +38,24 @@ Para deletar:
 kubectl delete service <name>
 kubectl delete deployment <name>
 
+Para deletar por label:
+kubectl delete deployments,services -l <label-key>=<label-value>
+
+
 PS: kubectl get deployments - listar deployments
 PS: kubectl get pods - listar pods
 PS: kubectl get services - listar services
+
+
+
+//////////////////////////////////
+
+Para aplicar a configuração:
+kubectl apply -f=<config-name>.yaml
+
+Para trocar, troque o arquivo e dê apply de novo.
+
+Para deletar pode-se utilizar
+kubectl delete -f=<config-name>.yaml,<config-name>.yaml
+
+O service sempre observa as mudanças de acordo com os pods que tem a especificação que ele observa, no selector.

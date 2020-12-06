@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    # não tem o matchLabels em service
+    # aqui pode ser usado apenas uma das chaves - valor, não precisando ter todas igual o Deployment
+    app: second-app
+    tier: backend
+  ports:
+    - protocol: 'TCP'
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer
+--- 
+# 3 dashs separam que pode ser 2 objetos no mesmo config.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: second-app-deployment
+spec:
+  replicas: 1 # running pods quando inicia
+  selector:
+    # matchExpressions:
+    matchLabels:
+      app: second-app
+      tier: backend
+  template: # pods que devem ser criados // --image=<image-name>
+    # kind: Pod não é preciso porque template sempre é Pod dentro de um container.
+    metadata:
+      labels:
+        # qualquer key - value que você queira, podendo ter múltiplos.
+        app: second-app
+        tier: backend
+    spec:
+      containers:
+        # - name: ... vários `-` porque é uma lista
+        #   image: ...
+        - name: second-node
+          image: jorgemussato/kub-test:2

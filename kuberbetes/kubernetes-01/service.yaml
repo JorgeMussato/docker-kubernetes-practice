@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  labels:
+    group: example
+spec:
+  selector:
+    # não tem o matchLabels em service
+    # aqui pode ser usado apenas uma das chaves - valor, não precisando ter todas igual o Deployment
+    app: second-app
+    tier: backend
+  ports:
+    - protocol: 'TCP'
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer

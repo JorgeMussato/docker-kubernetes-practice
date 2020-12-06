@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: second-app-deployment
+  labels:
+    group: example
+spec:
+  replicas: 1 # running pods quando inicia
+  selector:
+    matchLabels:
+      app: second-app
+      tier: backend
+    # matchExpressions:
+    #   # todos os pods que tem o valor app IN values [], poderia ser NotIn, mais nas docs.
+    #   - {key: app, operator: In, values: [second-app, first-app]} 
+  template: # pods que devem ser criados // --image=<image-name>
+    # kind: Pod não é preciso porque template sempre é Pod dentro de um container.
+    metadata:
+      labels:
+        # qualquer key - value que você queira, podendo ter múltiplos.
+        app: second-app
+        tier: backend
+    spec:
+      containers:
+        - name: second-node
+          image: jorgemussato/kub-test:latest
+          imagePullPolicy: Always
+          livenessProbe: # checar saude do container
+            httpGet: 
+              path: /
+              port: 8080
+            periodSeconds: 3
+            initialDelaySeconds: 10
+        # - name: ... vários `-` porque é uma lista
+        #   image: ...
