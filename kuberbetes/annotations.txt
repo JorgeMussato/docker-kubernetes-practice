@@ -8,5 +8,16 @@ kubectl create deployment <name> --image=<image-name> (imagem precisa estar no d
 
 Precisa passar a imagem para dentro do cluster, ou passar a imagem que é parte de um registro de imagem.
 
+Para criar um serviço para expor o deployment (importante para agrupar pods, expor os pods internamente e externamente):
+
+kubectl expose deployment <deployment-name> --port=<port> --type=<type> (type = LoadBalancer, ClusterIP, etc)
+
+Usar o Scaling na prática.
+
+kubectl scale deployment/<name> --replicas=<number>
+
+Pode-se escalar de volta, apenas trocando o número de réplicas para menos.
+
 PS: kubectl get deployments - listar deployments
 PS: kubectl get pods - listar pods
+PS: kubectl get services - listar services
