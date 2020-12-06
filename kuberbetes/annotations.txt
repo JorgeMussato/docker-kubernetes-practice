@@ -18,6 +18,26 @@ kubectl scale deployment/<name> --replicas=<number>
 
 Pode-se escalar de volta, apenas trocando o número de réplicas para menos.
 
+Para atualizar o deployment:
+kubectl set image deployment/first-app <image-name-inside-pod>=<docker-hub-image-name>:<version>
+É preciso trocar as tags para que o kubernetes baixe automaticamente e atualize o pod. Quando falha ao dar pull em imagem (version que não existe), ele não dropa o pod antigo
+
+Para verificar o status:
+kubectl rollout status deployment/<deployment-name>
+
+Para dar rollback:
+kubectl rollout undo deployment/<deployment-name>
+kubectl rollout undo deployment/<deployment-name> --to-revision=<revision>
+
+Para ver histórico de deployments.
+kubectl rollout history deployment/<deployment-name>
+kubectl rollout history deployment/<deployment-name> --revision=<revision>
+
+
+Para deletar:
+kubectl delete service <name>
+kubectl delete deployment <name>
+
 PS: kubectl get deployments - listar deployments
 PS: kubectl get pods - listar pods
 PS: kubectl get services - listar services
