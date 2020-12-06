@@ -1,0 +1,12 @@
+Comandos para rodar:
+
+Build da imagem:
+docker build .
+
+Criar objeto do deployment no cluster:
+kubectl create deployment <name> --image=<image-name> (imagem precisa estar no dockerhub)
+
+Precisa passar a imagem para dentro do cluster, ou passar a imagem que é parte de um registro de imagem.
+
+PS: kubectl get deployments - listar deployments
+PS: kubectl get pods - listar pods
