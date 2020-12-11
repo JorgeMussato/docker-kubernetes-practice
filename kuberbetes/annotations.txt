@@ -59,3 +59,9 @@ Para deletar pode-se utilizar
 kubectl delete -f=<config-name>.yaml,<config-name>.yaml
 
 O service sempre observa as mudanças de acordo com os pods que tem a especificação que ele observa, no selector.
+
+
+///////////////////
+emptyDir para multiplos pods não funcionam corretamente pois o volume duplica em dois pods.
+
+hostPath cria um volume dentro do proprio worker node.
