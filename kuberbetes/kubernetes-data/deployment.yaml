@@ -20,8 +20,10 @@ spec:
               name: story-volume
       volumes:
         - name: story-volume
-          hostPath: # apenas para pods no mesmo node. Quem está em outro node não terá acesso ao volume
-            path: /data
-            type: DirectoryOrCreate
+          persistentVolumeClaim:
+            claimName: host-pvc
+          # hostPath: # apenas para pods no mesmo node. Quem está em outro node não terá acesso ao volume
+          #   path: /data
+          #   type: DirectoryOrCreate
       
 

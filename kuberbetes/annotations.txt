@@ -45,6 +45,8 @@ kubectl delete deployments,services -l <label-key>=<label-value>
 PS: kubectl get deployments - listar deployments
 PS: kubectl get pods - listar pods
 PS: kubectl get services - listar services
+PS: kubectl get pv - listar persistent volumes
+PS: kubectl get pvc - listar persistent volumes claims
 
 
 
@@ -65,3 +67,7 @@ O service sempre observa as mudanças de acordo com os pods que tem a especifica
 emptyDir para multiplos pods não funcionam corretamente pois o volume duplica em dois pods.
 
 hostPath cria um volume dentro do proprio worker node.
+
+"Persistence volume" é um volume que não depende de node ou de pods, ele fica no cluster separadamente. e o Node tem o PV Claim, que consegue ter acesso à esse "persistence volume"
+
+Ver sobre o storage class `kubectl get sc`. Uma storage class é criada automaticamente no kubernetes.
