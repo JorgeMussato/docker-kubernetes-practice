@@ -8,6 +8,8 @@ RUN npm install
 
 COPY . .
 
+RUN mkdir tasks
+
 EXPOSE 8000
 
 CMD [ "node", "tasks-app.js" ]
