@@ -71,3 +71,10 @@ hostPath cria um volume dentro do proprio worker node.
 "Persistence volume" é um volume que não depende de node ou de pods, ele fica no cluster separadamente. e o Node tem o PV Claim, que consegue ter acesso à esse "persistence volume"
 
 Ver sobre o storage class `kubectl get sc`. Uma storage class é criada automaticamente no kubernetes.
+
+//////////////////
+Kubernetes gera automaticamente algumas variáveis de ambiente que você pode acessar dentro dos programas
+
+nome da variavel: <NOME_DO_SERVICO>_SERVICE_HOST // IP do serviço
+
+Kubernetes por padrão ja vem com CoreDNS https://coredns.io/

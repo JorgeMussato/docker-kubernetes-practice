@@ -17,6 +17,6 @@ spec:
           image: jorgemussato/kub-demo-users:latest
           env:
             - name: AUTH_URL
-              value: localhost
-        - name: auth
-          image: jorgemussato/kub-demo-auth:latest
+              # value: '10.105.2.95' # ip do serviço
+              # melhor prática é usar esse nome do serviço.
+              value: 'auth-service.default' # <service_name>.<namespace>
